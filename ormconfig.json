@@ -1,0 +1,20 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "username": "postgres",
+  "password": "mysecretpassword",
+  "port": "5444",
+  "database": "pichincha-api",
+  "autoLoadEntities": true,
+  "synchronize": true,
+  "logging": "false",
+  "migrations": [
+    "dist/database/migrations/*.js"
+  ],
+  "entities": [
+    "dist/**/*.entity.js"
+  ],
+  "cli": {
+    "migrationsDir": "src/database/migrations"
+  }
+}

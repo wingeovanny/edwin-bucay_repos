@@ -1,0 +1,19 @@
+{
+    "version" :"1.0",
+    "configurations": [        
+       {
+        "type": "node",
+        "name": "Debug NestjsExamen",
+        "request": "launch",
+        "runtimeArgs": [
+            "--nolazy",
+            "-r",
+            "ts-node/register",                        
+        ],
+        "args": [
+            "${workspaceFolder}/src/main.ts"
+        ],
+        "autoAttachChildProcesses": true
+       }
+    ]
+}
