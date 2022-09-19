@@ -1,3 +1,4 @@
+import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
@@ -13,7 +14,8 @@ import { TribusModule } from './modules/tribus/tribus.module';
     DatabaseModule,
     OrganizacionsModule,
     TribusModule,
-    MetricasModule
+    MetricasModule,
+    HttpModule,
 
   ],
 })

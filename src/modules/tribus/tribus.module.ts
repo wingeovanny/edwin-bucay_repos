@@ -1,3 +1,4 @@
+import { HttpService } from "@nestjs/axios";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Metricas } from "../metricas/metricas.entity";
@@ -10,8 +11,6 @@ import { TribuService } from "./tribus.service";
     imports: [TypeOrmModule.forFeature([Tribu, Repositorio, Metricas])],
     providers: [TribuService],
     controllers: [TribuController]
-
-
 })
 
 export class TribusModule { }
