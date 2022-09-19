@@ -24,8 +24,6 @@ export class Repositorio {
     @OneToMany((type) => Metricas, (metrica) => metrica.repo)
     metricas: Metricas[];
 
-
-
     @ManyToOne(type => Tribu, tribu => tribu.repos, { cascade: true })
     @JoinColumn({ name: "tribu_id" })
     tribu: Tribu;
