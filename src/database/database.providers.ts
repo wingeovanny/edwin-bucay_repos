@@ -21,7 +21,7 @@ export const DataBaseProvider: DynamicModule = TypeOrmModule.forRootAsync({
             port: config.get("DBPORT"),
             database: config.get("NAME"),
             autoLoadEntities: true,
-            synchronize: isDevEnviroment,
+            synchronize: true,
             logging: config.get("LOGGING"),
             migrations: ['dist/database/migrations/*.js'],
             entities: ['dist/**/*.entity.js'],

@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
-import { OrganizacionDto } from "./dto/organizacion.dto";
+import { CreateOrganizacionDto } from "./dto/create-organizacion.dto";
+import { UpdateOrgDto } from "./dto/update-org.dto";
 import { Organizacion } from "./organizacion.entity";
 import { OrganizacionServices } from "./organizacion.service";
 
@@ -24,19 +25,20 @@ export class OrganizacionController {
 
 
     @Post()
-    createOrganizacion(@Body() body): Promise<Organizacion> {
+    createOrganizacion(@Body() data: CreateOrganizacionDto): Promise<Organizacion> {
+        console.log(data instanceof CreateOrganizacionDto);
 
-        let newOrg: any = body;
-        return this.orgService.createOrganizacion(newOrg);
+        return this.orgService.createOrganizacion(data);
     }
 
 
+
     @Patch(':id')
-    updateOrganizacion(
-        @Param('id') id: number,
-        @Body() tuit: OrganizacionDto
-    ): Promise<Organizacion> {
-        return this.orgService.updateOrganizacion(id, tuit);
+    updateOrganizacion(@Param('id') id: number, @Body() org: UpdateOrgDto): Promise<Organizacion> {
+
+        let actOrg: any = org;
+
+        return this.orgService.updateOrganizacion(id, actOrg);
 
     }
 

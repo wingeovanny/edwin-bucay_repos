@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
-
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
-
 import { DatabaseModule } from './database/database.module';
+
 import { OrganizacionsModule } from './modules/organizacions/organizacions.module';
+import { TribusModule } from './modules/tribus/tribus.module';
 
 
 @Module({
@@ -12,6 +11,7 @@ import { OrganizacionsModule } from './modules/organizacions/organizacions.modul
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
     OrganizacionsModule,
+    TribusModule,
   ],
 })
 export class AppModule {

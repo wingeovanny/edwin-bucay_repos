@@ -14,7 +14,7 @@ export class Organizacion {
     @Column({ nullable: false })
     status: number;
 
-    @OneToMany((type) => Tribu, tribu => tribu.organizacion)
+    @OneToMany((type) => Tribu, (tribu) => tribu.organizacion)
     tribus: Tribu[];
 
 

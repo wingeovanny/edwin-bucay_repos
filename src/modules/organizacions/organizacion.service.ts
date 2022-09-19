@@ -1,17 +1,21 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { OrganizacionDto } from "./dto/organizacion.dto";
+import { Tribu } from "../tribus/entities/tribu.entity";
+import { CreateOrganizacionDto } from "./dto/create-organizacion.dto";
+import { UpdateOrgDto } from "./dto/update-org.dto";
 import { Organizacion } from "./organizacion.entity";
 
 @Injectable()
 export class OrganizacionServices {
 
     constructor(
-
+        @InjectRepository(Tribu) private readonly _tribuRepository: Repository<Tribu>,
         @InjectRepository(Organizacion) private readonly _orgRepository: Repository<Organizacion>) { }
 
     async getOrganizacions(): Promise<Organizacion[]> {
+
+        // return await this._orgRepository.find();
         return await this._orgRepository.find({ relations: ['tribus'] });
 
     }
@@ -27,36 +31,42 @@ export class OrganizacionServices {
         return org;
     }
 
-    async createOrganizacion(req: OrganizacionDto) {
 
-        const org: Organizacion = await this._orgRepository.create(req);
+    async createOrganizacion(data: CreateOrganizacionDto) {
 
-        return this._orgRepository.save(org);
-    }
-
-    async updateOrganizacion(id: number, { name, status }: OrganizacionDto) {
-
-        const org: Organizacion = await this._orgRepository.preload({
-            id,
-            name,
-            status
+        const newPost = await this._orgRepository.save({
+            name: data.name,
+            status: data.status,
+            tribu: data.tribus
         });
 
-        if (!org) {
+        return newPost;
+
+
+    }
+
+    async updateOrganizacion(id: number, req: UpdateOrgDto): Promise<Organizacion> {
+
+        let toUpdate = await this._orgRepository.findOne({ where: { id } });
+        if (!toUpdate) {
             throw new NotFoundException('Objeto no encontrado');
         }
 
-        return org;
+        let updated = Object.assign(toUpdate, req);
+
+        return this._orgRepository.save(updated);
+
     }
 
-    async removeOrganizacion(id: number): Promise<void> {
+    async removeOrganizacion(id: number): Promise<any> {
+
         const org: Organizacion = await this._orgRepository.findOne({ where: { id } });
 
         if (!org) {
             throw new NotFoundException('Objeto no encontrado');
         }
 
-        this._orgRepository.remove(org);
+        this._orgRepository.delete(org);
 
     }
 
