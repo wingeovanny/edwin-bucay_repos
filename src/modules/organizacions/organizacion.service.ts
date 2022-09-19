@@ -66,7 +66,7 @@ export class OrganizacionServices {
             throw new NotFoundException('Objeto no encontrado');
         }
 
-        this._orgRepository.delete(org);
+        this._orgRepository.remove(org);
 
     }
 

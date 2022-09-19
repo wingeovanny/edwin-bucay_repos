@@ -4,6 +4,7 @@ import { Tribu } from "./entities/tribu.entity";
 
 @Module({
     imports: [TypeOrmModule.forFeature([Tribu])]
+
 })
 
 export class TribusModule { }
