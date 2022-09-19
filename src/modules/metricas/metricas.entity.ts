@@ -2,7 +2,7 @@ import { Double, Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, 
 import { Repositorio } from "../repositorio/repositorios.entity";
 
 @Entity('metrica')
-export class Metricas extends BaseEntity {
+export class Metricas {
 
 
     @PrimaryGeneratedColumn('increment')

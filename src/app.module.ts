@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
+import { MetricasModule } from './modules/metricas/metricas.module';
 
 import { OrganizacionsModule } from './modules/organizacions/organizacions.module';
 import { TribusModule } from './modules/tribus/tribus.module';
@@ -12,6 +13,8 @@ import { TribusModule } from './modules/tribus/tribus.module';
     DatabaseModule,
     OrganizacionsModule,
     TribusModule,
+    MetricasModule
+
   ],
 })
 export class AppModule {
